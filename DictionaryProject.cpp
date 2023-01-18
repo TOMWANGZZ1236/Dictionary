@@ -21,6 +21,7 @@ using namespace std;
 unordered_map<string, string> data = { { "b", "b" }, { "a", "a" }, { "c", "c" }};
 
 
+
 // for converting chinese characters
 auto UnicodeToUTF8 = [](const wstring &wstr)
     {
@@ -115,11 +116,11 @@ void cover()
   
 }
 //
-void search(ofstream & His_File)
+void search(ofstream & His_File, ofstream & Data_File)
 {
 
-  system("chcp 65001");
-  system("color d7");
+  Data_File << "Test1";
+  system("color 07");
   Page_Switch ();
   string search_word = " ";
   cout << endl << "\t\t\t\t\t\t-------------------------\n\n";
@@ -127,7 +128,9 @@ void search(ofstream & His_File)
   cout << "\t\t\t\t\t\t-------------------------\n\n\n\n\n\n\n\n\n\n\n\n";
   cout << "\t\t\t\t\t\t Enter the word in lowercase: ";
   cin >> search_word;
+  His_File << " "; 
   His_File << search_word;
+ 
   searching();
   auto i = data.begin(); 
 
@@ -149,12 +152,14 @@ void search(ofstream & His_File)
       
       string word = "";
       string definition = "";
-      cout << "\t\t\t\t\tPlease enter the word that you would like to add";
+      cout << "\t\t\t\t\tPlease enter the word that you would like to add: ";
       cin >> word;
       cout << endl;
-      cout << "\t\t\t\t\t\tPlease enter the defintion of this word";
+      cout << "\t\t\t\t\t\tPlease enter the defintion of this word: ";
       cin >> definition;
       data.insert({word, definition});
+      Data_File << "Test2";// << " " << definition << endl;
+      cout << "reached" << word << definition;
     } 
     
   }
@@ -177,10 +182,14 @@ void history()
   cout << endl << "\t\t\t\t\t\t-------------------------\n\n";
   cout << "\t\t\t\t\t\t         History \n\n";
   cout << "\t\t\t\t\t\t-------------------------\n\n\n\n\n\n\n\n\n\n\n\n";
-  cout << "The last search is: ";
+  cout << "The last search is: " << endl;
+  int i = 1;
   while(FileIn >> his_word)
   {
-     cout << his_word;
+     
+     cout << i << ": " << his_word << " " << endl;
+     i++;
+     
   }
   cout << "Press enter to continue";
   getch();
@@ -192,10 +201,21 @@ void history()
 int main() {
     system("chcp 65001");
     string his_word = "";
-    ofstream His_File ("history.txt", ios::app);
+   
+    ofstream Data_File ("database.txt", ios::app | ios::out); // ios::in);
+    string data_word = "";
+    string data_definition = "";
+    Data_File << "Test3";
+ /*   while (Data_File >> data_word >> data_definition)
+    {
+      data.insert({data_word, data_definition});
+    } */
     cover();
-    
+   
+   
     menue:
+    ofstream His_File ("history.txt", ios::app);
+  
     Page_Switch();
     cout << "\n\n";
     cout << "\t\t\t\t\t\t   MAIN MENU";
@@ -206,7 +226,8 @@ int main() {
     if (option == 1)
     {
       
-      search(His_File);
+      search(His_File, Data_File);
+      Data_File.close();
       cout << "Press enter to continue";
       getch();
       goto menue;
