@@ -1,8 +1,5 @@
 #include <stdio.h>
-
-
 #include <iostream>
-
 #include <chrono>
 #include <thread>
 #include <fstream>
@@ -14,7 +11,36 @@ std:: unordered_map<std::string, std:: string> data = { { "冧", "倒  E.G 冧�
                                                         { "㤿憸", "挑剔" },
                                                         { "囉囉攣", "心裡上嘅衝突" },
                                                         { "叻執生", "識變通，識隨機應變" },
-                                                        { "嘥", "浪費" }
+                                                        { "爭好遠", "差一大截" },
+                                                        { "嘥", "浪費 E.G 嘥氣：浪費時間和精力" },
+                                                        { "噏", "亂講嘢；講冇意義、無謂嘅嘢 E.G 你知唔知個先生噏緊乜呀？"},
+                                                        { "郁手郁脚", "動手動腳" },
+                                                        { "兜口兜面", "劈頭劈臉的、不分青紅皂白、完全不給下台的意思" },
+                                                        { "乞人憎", "討人厭" },
+                                                        { "串", "動詞：揶揄，嘲諷 ；形容詞：囂張" },
+                                                        { "唞", "休息" },
+                                                        { "口水佬", "話癆" },
+                                                        { "折墮", "缺德，造孽" },
+                                                        { "燶", "焦" },
+                                                        { "唔挐褦", "冇關係" },
+                                                        { "牙煙", "危險" },
+                                                        { "有路", "兩人之間有未公開嘅愛情關係" },
+                                                        { "賣花讚花香", "賣花讚花香" },
+                                                        { "一文雞", "一塊錢" },
+                                                        { "啢", "過時的" },
+                                                        { "無計", "沒辦法" },
+                                                        { "離地", "形容某些人的想法甚至行為脫離普羅大眾，不食民間煙火，不知民間疾苦。他們雙腳離地，活於天際，高高在上。" },
+                                                        { "閂門", "關門" },
+                                                        { "蝕本", "賠本" },
+                                                        { "肉酸", "在廣東話里,「肉酸」是形容某個人的行為表現出來很難看，讓別人看上去很不舒服的意思。" },
+                                                        { "零舍", "特別" },
+                                                        { "挨", "依靠" },
+                                                        { "陰公", "真是可憐, 真是悲慘, 真是造孽" },
+                                                        { "執笠", "閂門，結業" },
+                                                        { "花款", "花樣" },
+                                                        { "冇嘢撈", "沒錢賺" },
+
+
 
 };
 
@@ -65,11 +91,11 @@ void Page_Switch ()
 void cover()
 {
 
-    Page_Switch();
+   // Page_Switch();
     std::cout << std::endl;
     std::cout << "\t\t\t\t\t\t-------------------------\n\n";
     std::cout << "\t\t\t\t\t\t     Tom's Dictionary\n\n";
-    std::cout << "\t\t\t\t\t\t-------------------------\n\n\n\n\n\n\n\n\n\n";
+    std::cout << "\t\t\t\t\t\t-------------------------\n\n\n\n";
     std::cout << std::endl << std::endl;
     std::cout << "\n\n\t\t\t\t Copy rights 2019, Tom's dictionary, All Rights Reserved.";
     for (int n = 0; n < 10; n++)
@@ -119,7 +145,8 @@ void search(std::ofstream & His_File, std::fstream & Data_File)
             std::cout << std::endl;
             std::cout << "\t\t\t\t\t\tPlease enter the definition of this word: ";
             std::cin >> definition;
-            data.insert({word, definition});
+            data.insert(
+                    {word, definition});
             Data_File.clear();
             Data_File.seekp(0, std::ios::end);
             Data_File << std::endl << word << " " << definition << std::endl;
@@ -181,11 +208,11 @@ int main() {
     menue:
     std::ofstream His_File ("history.txt", std::ios::app);
 
-    Page_Switch();
+  //  Page_Switch();
     std::cout << "\n\n";
     std::cout << "\t\t\t\t\t\t   MAIN MENU";
     std::cout << std::endl<< "\t\t\t\t\t\tP1 SEARCH P2 HISTORY P3 EXIT";
-    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+    std::cout << "\n\n\n\n\n";
     int option = 0;
     std::cin >> option;
     if (option == 1)
